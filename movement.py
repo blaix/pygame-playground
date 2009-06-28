@@ -1,4 +1,4 @@
-background_image_filename = 'monster-in-my-head.jpg'
+character_image_filename = 'images/bob.png'
 
 import pygame
 from pygame.locals import *
@@ -6,7 +6,7 @@ from sys import exit
 
 pygame.init()
 screen = pygame.display.set_mode((640, 480), 0, 32)
-background = pygame.image.load(background_image_filename).convert()
+character = pygame.image.load(character_image_filename).convert()
 
 x, y = 0, 0
 move_x, move_y = 0, 0
@@ -39,7 +39,6 @@ while True:
     y += move_y
     
     screen.fill((0, 0, 0))
-    screen.blit(background, (x, y))
+    screen.blit(character, (x, y))
     
     pygame.display.update()
-            
