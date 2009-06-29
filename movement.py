@@ -1,11 +1,14 @@
 character_image_filename = 'images/bob.png'
+speed = 2
+screen_width = 640
+screen_height = 480
 
 import pygame
 from pygame.locals import *
 from sys import exit
 
 pygame.init()
-screen = pygame.display.set_mode((640, 480), 0, 32)
+screen = pygame.display.set_mode((screen_width, screen_height), 0, 32)
 character = pygame.image.load(character_image_filename).convert()
 
 x, y = 0, 0
@@ -18,21 +21,17 @@ while True:
             exit()
         if event.type == KEYDOWN:
             if event.key == K_LEFT:
-                move_x = -1
+                move_x = -speed
             elif event.key == K_RIGHT:
-                move_x = +1
+                move_x = +speed
             elif event.key == K_UP:
-                move_y = -1
+                move_y = -speed
             elif event.key == K_DOWN:
-                move_y = +1
+                move_y = +speed
         elif event.type == KEYUP:
-            if event.key == K_LEFT:
+            if event.key == K_LEFT or event.key == K_RIGHT:
                 move_x = 0
-            elif event.key == K_RIGHT:
-                move_x = 0
-            elif event.key == K_UP:
-                move_y = 0
-            elif event.key == K_DOWN:
+            elif event.key == K_UP or event.key == K_DOWN:
                 move_y = 0
 
     x += move_x
