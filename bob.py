@@ -1,6 +1,8 @@
-character_image_filename = 'images/bob.png'
 SPEED = 1
 SCREEN_SIZE = (800, 600)
+
+character_right = 'images/bob-right.png'
+character_left = 'images/bob-left.png'
 
 import pygame
 from pygame.locals import *
@@ -8,7 +10,7 @@ from sys import exit
 
 pygame.init()
 screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
-character = pygame.image.load(character_image_filename).convert_alpha()
+character = pygame.image.load(character_right).convert_alpha()
 font = pygame.font.SysFont("Verdana", 16)
 
 x, y = 0, 0
@@ -28,8 +30,10 @@ while True:
                     fullscreen = FULLSCREEN
                 screen = pygame.display.set_mode(SCREEN_SIZE, fullscreen, 32)
             if event.key == K_LEFT:
+                character = pygame.image.load(character_left).convert_alpha()
                 move_x = -SPEED
             elif event.key == K_RIGHT:
+                character = pygame.image.load(character_right).convert_alpha()
                 move_x = +SPEED
             elif event.key == K_UP:
                 move_y = -SPEED
