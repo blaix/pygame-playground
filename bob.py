@@ -1,5 +1,7 @@
 SPEED = 1
-SCREEN_SIZE = (800, 600)
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
+SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
 character_right = 'images/bob-right.png'
 character_left = 'images/bob-left.png'
@@ -11,6 +13,7 @@ from sys import exit
 pygame.init()
 screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
 character = pygame.image.load(character_right).convert_alpha()
+grass = pygame.image.load('images/grass.png')
 font = pygame.font.SysFont("Verdana", 16)
 
 x, y = 0, 0
@@ -48,7 +51,10 @@ while True:
     x += move_x
     y += move_y
     
-    screen.fill((0, 0, 0))
+    for bg_y in range(0, SCREEN_HEIGHT, 10):
+        for bg_x in range(0, SCREEN_WIDTH, 10):
+            screen.blit(grass, (bg_x, bg_y))
+            
     screen.blit(font.render("Hit 'f' to enter/exit fullscreen mode.", True, (250, 250, 250)), (5, 5))
     screen.blit(character, (x, y))
     
